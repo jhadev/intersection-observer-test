@@ -1,0 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+  background-color: slategrey;
+  color: whitesmoke;
+  height: 2000px;
+}
