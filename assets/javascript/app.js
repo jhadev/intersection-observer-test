@@ -1,8 +1,9 @@
 // check for browser support
+const video = document.querySelector('video');
 
 if ('IntersectionObserver' in window) {
   // find video tag
-  const video = document.querySelector('video');
+
   // set a flag for pausing
   let isPaused = false;
 
