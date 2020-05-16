@@ -1,9 +1,9 @@
-// check for browser support
-const video = document.querySelector('video');
+// find all video tags
+const videos = document.querySelectorAll('video');
+console.log(videos);
 
-if ('IntersectionObserver' in window) {
-  // find video tag
-
+// function for autoPlay/pause will return observer
+const auto = (video) => {
   // set a flag for pausing
   let isPaused = false;
 
@@ -11,10 +11,14 @@ if ('IntersectionObserver' in window) {
   let observer = new IntersectionObserver(
     (entries, observer) => {
       // entries are an array
-      entries.forEach((entry) => {
+
+      entries.forEach((entry, index) => {
         /*
-        The IntersectionObserverEntry interface's read-only intersectionRatio property tells you how much of the target element is currently visible within the root's intersection ratio, as a value between 0.0 and 1.0.
+        The IntersectionObserverEntry interface's read-only intersectionRatio property 
+        tells you how much of the target element is currently visible within the root's intersection ratio,
+         as a value between 0.0 and 1.0.
       */
+
         // if video is not is full view and isn't paused
         if (entry.intersectionRatio !== 1 && !video.paused) {
           // pause the video
@@ -35,5 +39,15 @@ if ('IntersectionObserver' in window) {
     },
     { threshold: 1 }
   );
-  observer.observe(video);
+
+  return observer;
+};
+
+// check for browser support
+if ('IntersectionObserver' in window) {
+  // run the observe method of the observer object with the video tag as it's argument.
+  videos.forEach((video) => {
+    const observer = auto(video);
+    observer.observe(video);
+  });
 }

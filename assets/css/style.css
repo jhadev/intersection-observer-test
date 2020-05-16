@@ -13,3 +13,8 @@ body {
 .container {
   margin-top: 50px;
 }
+
+.video-container {
+  margin: 100px;
+  height: 800px;
+}
